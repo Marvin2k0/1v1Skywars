@@ -1,0 +1,9 @@
+name: 1v1Skywars
+author: Marvin2k0
+version: 1.0
+main: de.marvin2k0.skywars.Skywars
+commands:
+  setgamespawn:
+    permission: 1v1sky.setspawn
+  setgamelobby:
+    permission: 1v1sky.setlobby
