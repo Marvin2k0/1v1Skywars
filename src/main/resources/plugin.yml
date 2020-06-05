@@ -7,3 +7,5 @@ commands:
     permission: 1v1sky.setspawn
   setgamelobby:
     permission: 1v1sky.setlobby
+  setylevel:
+    permission: 1v1sky.ylevel

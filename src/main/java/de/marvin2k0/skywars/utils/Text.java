@@ -38,6 +38,9 @@ public class Text
         config.addDefault("join", "&7[&a+&7] &9%player% &7hat das Spiel betreten.");
         config.addDefault("kitsname", "&6Kits");
         config.addDefault("bedname", "&cVerlassen");
+        config.addDefault("death", "&9%player% &7hat noch &9%lives% &7Leben.");
+        config.addDefault("minplayers", 2);
+        config.addDefault("maxplayers", 2);
 
         saveConfig();
     }
