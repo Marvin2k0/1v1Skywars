@@ -5,6 +5,7 @@ import de.marvin2k0.skywars.listener.SignListener;
 import de.marvin2k0.skywars.utils.Locations;
 import de.marvin2k0.skywars.utils.Text;
 import de.marvinleiers.minigameapi.MinigameMain;
+import de.marvinleiers.minigameapi.game.Game;
 import de.marvinleiers.minigameapi.utils.ItemUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -44,6 +45,7 @@ public class Skywars extends JavaPlugin
         this.getCommand("setgamelobby").setExecutor(this);
         this.getCommand("setgamespawn").setExecutor(this);
         this.getCommand("setylevel").setExecutor(this);
+        this.getCommand("leave").setExecutor(this);
     }
 
     @Override
@@ -123,6 +125,16 @@ public class Skywars extends JavaPlugin
             {
                 player.sendMessage("§4Error: §cBitte nur Zahlen eingeben! §4" + args[1] + " §cist keine Zahl!");
             }
+        }
+
+        else if (label.equalsIgnoreCase("leave"))
+        {
+            if (!MinigameAPI.inGame(player))
+                return true;
+
+            Game game = MinigameAPI.gameplayers.get(player).getGame();
+            game.leave(this, player);
+            return true;
         }
 
         return true;
