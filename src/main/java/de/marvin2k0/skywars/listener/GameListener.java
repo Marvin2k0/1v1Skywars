@@ -55,7 +55,7 @@ public class GameListener implements Listener
 
         if (!Skywars.plugin.getConfig().isSet("games." + game.getName() + ".spawns.2")
                 || !Skywars.plugin.getConfig().isSet("games." + game.getName() + ".spawns.1")
-                || !Skywars.plugin.getConfig().isSet("games." + game.getName() + ".gamelobby"))
+                || !Skywars.plugin.getConfig().isSet("games." + game.getName() + ".lobby"))
         {
             player.sendMessage(Text.get("notset"));
             game.leave(Skywars.plugin, event.getPlayer());
@@ -63,7 +63,24 @@ public class GameListener implements Listener
         }
 
         event.getPlayer().teleport(Locations.get("games." + game.getName() + ".gamelobby"));
+        SignListener.updateSigns(game, game.getPlayers().size() + "/" + Text.get("maxplayers", false));
         health.put(event.getPlayer(), 10);
+    }
+
+    @EventHandler
+    public void onLeave(PlayerGameLeaveEvent event)
+    {
+        Game game = event.getGame();
+
+        SignListener.updateSigns(game, game.getPlayers().size() + "/" + Text.get("maxplayers", false));
+    }
+
+    @EventHandler
+    public void onReset(GameResetEvent event)
+    {
+        Game game = event.getGame();
+
+        SignListener.updateSigns(game, game.getPlayers().size() + "/" + Text.get("maxplayers", false));
     }
 
     @EventHandler
@@ -75,6 +92,7 @@ public class GameListener implements Listener
         }
 
         Game game = event.getGame();
+        SignListener.updateSigns(game, "§cIm Spiel!");
 
         if (game.getPlayers().size() == 2)
         {

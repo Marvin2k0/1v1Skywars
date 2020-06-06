@@ -46,6 +46,16 @@ public class Skywars extends JavaPlugin
         this.getCommand("setgamespawn").setExecutor(this);
         this.getCommand("setylevel").setExecutor(this);
         this.getCommand("leave").setExecutor(this);
+
+        loadGames();
+    }
+
+    private void loadGames()
+    {
+        for (Game game : api.getGames(this))
+        {
+            SignListener.loadSigns(game);
+        }
     }
 
     @Override
